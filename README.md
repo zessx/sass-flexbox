@@ -1,6 +1,6 @@
 # SassFlexbox
 
-![SassFlexbox](https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-queries.png)  
+![SassFlexbox](https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-flexbox.png)  
 Manage Flexbox in Sass easily.
 
 ## Configuration
