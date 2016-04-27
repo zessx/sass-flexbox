@@ -1,0 +1,21 @@
+{
+  "name": "zessx-sass-flexbox",
+  "description": "Manage Flexbox in Sass easily.",
+  "main": [
+    "sass-flexbox.scss"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sass",
+    "scss",
+    "flexbox"
+  ],
+  "authors": [
+    "Samuel Marchal <contact@zes.sx>"
+  ],
+  "homepage": "http://smarchal.com/sass-flexbox/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zessx/sass-flexbox.git"
+  }
+}
