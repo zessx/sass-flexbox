@@ -1,7 +1,7 @@
 # SassFlexbox
 
 <p align="center">
-    <img src="./sass-flexbox.png" alt="Sass Flexbox logo">
+    <img src="https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-flexbox.png" alt="Sass Flexbox logo">
 </p>
 
 Manage Flexbox in Sass easily.
