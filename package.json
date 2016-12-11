@@ -1,0 +1,23 @@
+{
+  "name": "sass-flexbox",
+  "version": "1.0.0",
+  "description": "Manage Flexbox in Sass easily.",
+  "main": "sass-flexbox.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zessx/sass-flexbox.git"
+  },
+  "keywords": [
+    "sass",
+    "flexbox"
+  ],
+  "author": "Samuel Marchal <contact@zes.sx> (http://zes.sx)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zessx/sass-flexbox/issues"
+  },
+  "homepage": "https://github.com/zessx/sass-flexbox#readme"
+}
