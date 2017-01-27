@@ -1,3 +1,7 @@
+<a href="https://www.npmjs.com/package/sass-flexbox"><img src="https://img.shields.io/npm/dt/sass-flexbox.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/sass-flexbox"><img src="https://img.shields.io/npm/v/sass-flexbox.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/sass-flexbox"><img src="https://img.shields.io/npm/l/sass-flexbox.svg" alt="License"></a>
+
 # SassFlexbox
 
 <p align="center">
