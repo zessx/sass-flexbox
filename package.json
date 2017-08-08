@@ -4,6 +4,7 @@
 	"description": "Manage Flexbox in Sass easily.",
 	"main": "sass-flexbox.sass",
 	"scripts": {
+		"output-dev": "node-sass dev/_dev.sass dev/output.css -q",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -15,14 +16,19 @@
 		"flexbox"
 	],
 	"author": "Samuel Marchal <contact@zes.sx> (http://zes.sx)",
-	"contributors": [{
-		"name": "Blaine Hansen",
-		"email": "faichenshing@gmail.com",
-		"url": "http://blainehansen.co/"
-	}],
+	"contributors": [
+		{
+			"name": "Blaine Hansen",
+			"email": "faichenshing@gmail.com",
+			"url": "http://blainehansen.co/"
+		}
+	],
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/zessx/sass-flexbox/issues"
 	},
-	"homepage": "https://github.com/zessx/sass-flexbox#readme"
+	"homepage": "https://github.com/zessx/sass-flexbox#readme",
+	"devDependencies": {
+		"node-sass": "^4.5.3"
+	}
 }
