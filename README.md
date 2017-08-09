@@ -182,6 +182,17 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - `%align-content-stretch`
 - `%align-content-inherit`
 
+## Developing Locally
+
+This package includes options to compile local sass files to spot check them, or to run tests with [sassaby](https://github.com/ryanbahniuk/sassaby).
+
+First run `npm install` to download dev dependencies.
+
+To quickly spot-check anything you add or change, run `npm run output-dev`. It will compile the `./dev/_dev.sass` file to `./dev/output.css`.
+
+To run tests, run `npm test`. Tests are written in `./test/index.js`.
+
+
 ## Sources
 
 - http://www.w3.org/TR/css3-flexbox/
