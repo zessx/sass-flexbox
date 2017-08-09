@@ -1,8 +1,6 @@
 $sass-flexbox-rename-map: (nowrap: none, auto: auto, flex-start: start, flex-end: end, center: center, baseline: baseline, space-between: space-between, space-around: space-around, stretch: stretch, inherit: inherit)
 
-/*
-	Display
- */
+// Display 
 @mixin display-flex
 	display: -webkit-box
 	display: -moz-box
@@ -23,9 +21,7 @@ $sass-flexbox-rename-map: (nowrap: none, auto: auto, flex-start: start, flex-end
 
 
 
-/*
-	Flex direction
- */
+// Flex direction 
 $flex-direction-args: (row, row-reverse, column, column-reverse, inherit)
 @mixin flex-direction($direction: row)
 	@if not index($flex-direction-args, $direction)
@@ -72,9 +68,7 @@ $flex-direction-args: (row, row-reverse, column, column-reverse, inherit)
 		+flex-direction($arg)
 
 
-/*
-	Flex wrap
- */
+// Flex wrap 
 $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 @mixin flex-wrap($wrap: nowrap)
 	@if not index($flex-wrap-args, $wrap)
@@ -101,9 +95,7 @@ $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 		+flex-wrap($arg)
 
 
-/*
-	Order
- */
+// Order 
 @mixin order($order: 0)
 	-webkit-box-ordinal-group: ($order + 1)
 	-moz-box-ordinal-group: $order
@@ -113,17 +105,13 @@ $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 	order: $order
 
 
-/*
-	Flex flow
- */
+// Flex flow 
 @mixin flex-flow($direction: row, $wrap: nowrap)
 	+flex-direction($direction)
 	+flex-wrap($wrap)
 
 
-/*
-	Flex grow
- */
+// Flex grow 
 @mixin flex-grow($grow: 0)
 	-webkit-flex-grow: $grow
 	-webkit-box-flex: $grow
@@ -132,9 +120,7 @@ $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 	flex-grow: $grow
 
 
-/*
-	Flex shrink
- */
+// Flex shrink 
 @mixin flex-shrink($shrink: 1)
 	-webkit-flex-shrink: $shrink
 	-webkit-box-flex: $shrink
@@ -143,9 +129,7 @@ $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 	flex-shrink: $shrink
 
 
-/*
-	Flex basis
- */
+// Flex basis 
 @mixin flex-basis($basis: auto)
 	-webkit-flex-basis: $basis
 	-moz-flex-basis: $basis
@@ -153,18 +137,14 @@ $flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
 	flex-basis: $basis
 
 
-/*
-	Flex
- */
+// Flex 
 @mixin flex($grow: 0, $shrink: 1, $basis: auto)
 	+flex-grow($grow)
 	+flex-shrink($shrink)
 	+flex-basis($basis)
 
 
-/*
-	Justify content
- */
+// Justify content 
 $justify-content-args: (flex-start, flex-end, center, space-between, space-around, space-evenly, inherit)
 @mixin justify-content($justify: flex-start)
 	@if not index($justify-content-args, $justify)
@@ -206,9 +186,7 @@ $justify-content-args: (flex-start, flex-end, center, space-between, space-aroun
 		+justify-content($arg)
 
 
-/*
-	Align items
- */
+// Align items 
 $align-items-args: (flex-start, flex-end, center, baseline, stretch, inherit)
 @mixin align-items($align: stretch)
 	@if not index($align-items-args, $align)
@@ -240,9 +218,7 @@ $align-items-args: (flex-start, flex-end, center, baseline, stretch, inherit)
 		+align-items($arg)
 
 
-/*
-	Align self
- */
+// Align self 
 $align-self-args: (auto, flex-start, flex-end, center, baseline, stretch, inherit)
 @mixin align-self($align: auto)
 	@if not index($align-self-args, $align)
@@ -274,9 +250,7 @@ $align-self-args: (auto, flex-start, flex-end, center, baseline, stretch, inheri
 	%align-self-#{$arg}
 		+align-self($arg)	
 
-/*
-	Align content
- */
+// Align content 
 $align-content-args: (flex-start, flex-end, center, space-between, space-around, space-evenly, stretch, inherit)
 @mixin align-content($align: stretch)
 	@if not index($align-content-args, $align)

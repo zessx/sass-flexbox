@@ -2,10 +2,14 @@
 	"name": "sass-flexbox",
 	"version": "2.0.0",
 	"description": "Manage Flexbox in Sass easily.",
-	"main": "sass-flexbox.sass",
+	"main": "sass-flexbox.scss",
 	"scripts": {
-		"output-dev": "node-sass dev/_dev.sass dev/output.css -q",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"compile": "sass-convert --from sass --to scss ./src/sass-flexbox.sass ./sass-flexbox.scss",
+		"prepare": "npm run compile",
+		"output-dev": "node-sass ./dev/_dev.sass ./dev/output.css -q",
+		"pretest": "npm run compile",
+		"test": "mocha",
+		"preversion": "npm run compile"
 	},
 	"repository": {
 		"type": "git",
@@ -29,6 +33,8 @@
 	},
 	"homepage": "https://github.com/zessx/sass-flexbox#readme",
 	"devDependencies": {
-		"node-sass": "^4.5.3"
+		"mocha": "^3.5.0",
+		"node-sass": "^4.5.3",
+		"sassaby": "^2.1.1"
 	}
 }
