@@ -1,40 +1,40 @@
 {
-	"name": "sass-flexbox",
-	"version": "1.0.0",
-	"description": "Manage Flexbox in Sass easily.",
-	"main": "sass-flexbox.scss",
-	"scripts": {
-		"compile": "sass-convert --from sass --to scss ./src/sass-flexbox.sass ./sass-flexbox.scss",
-		"prepare": "npm run compile",
-		"output-dev": "node-sass ./dev/_dev.sass ./dev/output.css -q",
-		"pretest": "npm run compile",
-		"test": "mocha",
-		"preversion": "npm run compile"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/zessx/sass-flexbox.git"
-	},
-	"keywords": [
-		"sass",
-		"flexbox"
-	],
-	"author": "Samuel Marchal <contact@zes.sx> (http://zes.sx)",
-	"contributors": [
-		{
-			"name": "Blaine Hansen",
-			"email": "faichenshing@gmail.com",
-			"url": "http://blainehansen.co/"
-		}
-	],
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/zessx/sass-flexbox/issues"
-	},
-	"homepage": "https://github.com/zessx/sass-flexbox#readme",
-	"devDependencies": {
-		"mocha": "^3.5.0",
-		"node-sass": "^4.5.3",
-		"sassaby": "^2.1.1"
-	}
+  "name": "sass-flexbox",
+  "version": "2.0.0",
+  "description": "Manage Flexbox in Sass easily.",
+  "main": "sass-flexbox.scss",
+  "scripts": {
+    "compile": "sass-convert --from sass --to scss ./src/sass-flexbox.sass ./sass-flexbox.scss",
+    "prepare": "npm run compile",
+    "output-dev": "node-sass ./dev/_dev.sass ./dev/output.css -q",
+    "pretest": "npm run compile",
+    "test": "mocha",
+    "preversion": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zessx/sass-flexbox.git"
+  },
+  "keywords": [
+    "sass",
+    "flexbox"
+  ],
+  "author": "Samuel Marchal <contact@zes.sx> (http://zes.sx)",
+  "contributors": [
+    {
+      "name": "Blaine Hansen",
+      "email": "faichenshing@gmail.com",
+      "url": "http://blainehansen.co/"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zessx/sass-flexbox/issues"
+  },
+  "homepage": "https://github.com/zessx/sass-flexbox#readme",
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "node-sass": "^4.5.3",
+    "sassaby": "^2.1.1"
+  }
 }
