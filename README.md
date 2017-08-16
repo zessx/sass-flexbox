@@ -38,17 +38,14 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - `%display-flex`
 - `%display-inline-flex`
 
-
 ### Flex direction
 
 - **`@mixin flex-direction($direction: row)`**
-
 - **`@mixin flex-direction-row`**
 - **`@mixin flex-direction-row-reverse`**
 - **`@mixin flex-direction-column`**
 - **`@mixin flex-direction-column-reverse`**
 - **`@mixin flex-direction-inherit`**
-
 - `%flex-direction-row`
 - `%flex-direction-row-reverse`
 - `%flex-direction-column`
@@ -59,59 +56,48 @@ Since some flexbox values are set with numbers or other measurements, there aren
 ### Flex wrap
 
 - **`@mixin flex-wrap($wrap: nowrap)`**
-
 - **`@mixin flex-wrap-nowrap`**
 - **`@mixin flex-wrap-wrap`**
 - **`@mixin flex-wrap-wrap-reverse`**
 - **`@mixin flex-wrap-inherit`**
-
 - `%flex-wrap-nowrap`
 - `%flex-wrap-wrap`
 - `%flex-wrap-wrap-reverse`
 - `%flex-wrap-inherit`
 
-
 ### Order
 
 - **`@mixin order($order: 0)`**
-
 
 ### Flex flow
 
 - **`@mixin flex-flow($direction: row, $wrap: nowrap)`**
 
-
 ### Flex grow
 
 - **`@mixin flex-grow($grow: 0)`**
-
 
 ### Flex shrink
 
 - **`@mixin flex-shrink($shrink: 1)`**
 
-
 ### Flex basis
 
 - **`@mixin flex-basis($basis: auto)`**
-
 
 ### Flex
 
 - **`@mixin flex($grow: 0, $shrink: 1, $basis: auto)`**
 
-
 ### Justify content
 
 - **`@mixin justify-content($justify: flex-start)`**
-
 - **`@mixin justify-content-flex-start`**
 - **`@mixin justify-content-flex-end`**
 - **`@mixin justify-content-center`**
 - **`@mixin justify-content-space-between`**
 - **`@mixin justify-content-space-around`**
 - **`@mixin justify-content-inherit`**
-
 - `%justify-content-flex-start`
 - `%justify-content-flex-end`
 - `%justify-content-center`
@@ -120,18 +106,15 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - `%justify-content-space-evenly`
 - `%justify-content-inherit`
 
-
 ### Align items
 
 - **`@mixin align-items($align: stretch)`**
-
 - **`@mixin align-items-flex-start`**
 - **`@mixin align-items-flex-end`**
 - **`@mixin align-items-center`**
 - **`@mixin align-items-baseline`**
 - **`@mixin align-items-stretch`**
 - **`@mixin align-items-inherit`**
-
 - `%align-items-flex-start`
 - `%align-items-flex-end`
 - `%align-items-center`
@@ -139,11 +122,9 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - `%align-items-stretch`
 - `%align-items-inherit`
 
-
 ### Align self
 
 - **`@mixin align-self($align: auto)`**
-
 - **`@mixin align-self-auto`**
 - **`@mixin align-self-flex-start`**
 - **`@mixin align-self-flex-end`**
@@ -151,7 +132,6 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - **`@mixin align-self-baseline`**
 - **`@mixin align-self-stretch`**
 - **`@mixin align-self-inherit`**
-
 - `%align-self-auto`
 - `%align-self-flex-start`
 - `%align-self-flex-end`
@@ -160,11 +140,9 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - `%align-self-stretch`
 - `%align-self-inherit`
 
-
 ### Align content
 
 - **`@mixin align-content($align: stretch)`**
-
 - **`@mixin align-content-flex-start`**
 - **`@mixin align-content-flex-end`**
 - **`@mixin align-content-center`**
@@ -172,7 +150,6 @@ Since some flexbox values are set with numbers or other measurements, there aren
 - **`@mixin align-content-space-around`**
 - **`@mixin align-content-stretch`**
 - **`@mixin align-content-inherit`**
-
 - `%align-content-flex-start`
 - `%align-content-flex-end`
 - `%align-content-center`
@@ -191,7 +168,6 @@ First run `npm install` to download dev dependencies.
 To quickly spot-check anything you add or change, run `npm run output-dev`. It will compile the `./dev/_dev.sass` file to `./dev/output.css`.
 
 To run tests, run `npm test`. Tests are written in `./test/index.js`.
-
 
 ## Sources
 
