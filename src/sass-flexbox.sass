@@ -1,0 +1,283 @@
+$sass-flexbox-rename-map: (nowrap: none, auto: auto, flex-start: start, flex-end: end, center: center, baseline: baseline, space-between: space-between, space-around: space-around, stretch: stretch, inherit: inherit)
+
+// Display 
+@mixin display-flex
+	display: -webkit-box
+	display: -moz-box
+	display: -webkit-flexbox
+	display: -ms-flexbox
+	display: -webkit-flex
+	display: flex
+
+@mixin display-inline-flex
+	display: -webkit-inline-flex
+	display: inline-flex
+	
+%display-flex
+	+display-flex
+
+%display-inline-flex
+	+display-inline-flex
+
+
+
+// Flex direction 
+$flex-direction-args: (row, row-reverse, column, column-reverse, inherit)
+@mixin flex-direction($direction: row)
+	@if not index($flex-direction-args, $direction)
+		@error "flex-direction has been passed an invalid argument: #{$direction}"
+
+	$reverse: false
+	@if index((row-reverse, column-reverse), $direction)
+		$reverse: true
+
+	$orientation: inherit
+	@if index((row, row-reverse), $direction)
+		$orientation: horizontal
+
+	@if index((column, column-reverse), $direction)
+		$orientation: vertical
+
+
+	-webkit-box-orient: $orientation
+	-moz-box-orient: $orientation
+	@if $reverse
+		-webkit-box-direction: reverse
+		-moz-box-direction: reverse
+
+	-webkit-flex-direction: $direction
+	-moz-flex-direction: $direction
+	-ms-flex-direction: $direction
+	flex-direction: $direction
+
+
+@mixin flex-direction-row
+	+flex-direction(row)
+@mixin flex-direction-row-reverse
+	+flex-direction(row-reverse)
+@mixin flex-direction-column
+	+flex-direction(column)
+@mixin flex-direction-column-reverse
+	+flex-direction(column-reverse)
+@mixin flex-direction-inherit
+	+flex-direction(inherit)
+
+
+@each $arg in $flex-direction-args
+	%flex-direction-#{$arg}
+		+flex-direction($arg)
+
+
+// Flex wrap 
+$flex-wrap-args: (nowrap, wrap, wrap-reverse, inherit)
+@mixin flex-wrap($wrap: nowrap)
+	@if not index($flex-wrap-args, $wrap)
+		@error "flex-wrap has been passed an invalid argument: #{$wrap}"
+
+	-webkit-flex-wrap: $wrap
+	-moz-flex-wrap: $wrap
+	-ms-flex-wrap: map-get($sass-flexbox-rename-map, $wrap)
+	flex-wrap: $wrap
+
+
+@mixin flex-wrap-nowrap
+	+flex-wrap(nowrap)
+@mixin flex-wrap-wrap
+	+flex-wrap(wrap)
+@mixin flex-wrap-wrap-reverse
+	+flex-wrap(wrap-reverse)
+@mixin flex-wrap-inherit
+	+flex-wrap(inherit)
+
+
+@each $arg in $flex-wrap-args
+	%flex-wrap-#{$arg}
+		+flex-wrap($arg)
+
+
+// Order 
+@mixin order($order: 0)
+	-webkit-box-ordinal-group: ($order + 1)
+	-moz-box-ordinal-group: $order
+	-ms-flex-order: $order
+	-webkit-order: $order
+	-moz-order: $order
+	order: $order
+
+
+// Flex flow 
+@mixin flex-flow($direction: row, $wrap: nowrap)
+	+flex-direction($direction)
+	+flex-wrap($wrap)
+
+
+// Flex grow 
+@mixin flex-grow($grow: 0)
+	-webkit-flex-grow: $grow
+	-webkit-box-flex: $grow
+	-moz-flex-grow: $grow
+	-ms-flex-positive: $grow
+	flex-grow: $grow
+
+
+// Flex shrink 
+@mixin flex-shrink($shrink: 1)
+	-webkit-flex-shrink: $shrink
+	-webkit-box-flex: $shrink
+	-moz-flex-shrink: $shrink
+	-ms-flex-negative: $shrink
+	flex-shrink: $shrink
+
+
+// Flex basis 
+@mixin flex-basis($basis: auto)
+	-webkit-flex-basis: $basis
+	-moz-flex-basis: $basis
+	-ms-flex-preferred-size: $basis
+	flex-basis: $basis
+
+
+// Flex 
+@mixin flex($grow: 0, $shrink: 1, $basis: auto)
+	+flex-grow($grow)
+	+flex-shrink($shrink)
+	+flex-basis($basis)
+
+
+// Justify content 
+$justify-content-args: (flex-start, flex-end, center, space-between, space-around, space-evenly, inherit)
+@mixin justify-content($justify: flex-start)
+	@if not index($justify-content-args, $justify)
+		@error "justify-content has been passed an invalid argument: #{$justify}"
+
+	@if $justify == space-between
+		-webkit-box-pack: justify
+		-moz-box-pack: justify
+		-webkit-flex-pack: justify
+		-ms-flex-pack: justify
+
+	@else if $justify != space-around
+		-webkit-box-pack: map-get($sass-flexbox-rename-map, $justify)
+		-moz-box-pack: map-get($sass-flexbox-rename-map, $justify)
+		-webkit-flex-pack: map-get($sass-flexbox-rename-map, $justify)
+		-ms-flex-pack: map-get($sass-flexbox-rename-map, $justify)
+
+	-moz-justify-content: $justify
+	-webkit-justify-content: $justify
+	justify-content: $justify
+
+
+@mixin justify-content-flex-start
+	+justify-content(flex-start)
+@mixin justify-content-flex-end
+	+justify-content(flex-end)
+@mixin justify-content-center
+	+justify-content(center)
+@mixin justify-content-space-between
+	+justify-content(space-between)
+@mixin justify-content-space-around
+	+justify-content(space-around)
+@mixin justify-content-inherit
+	+justify-content(inherit)
+
+
+@each $arg in $justify-content-args
+	%justify-content-#{$arg}
+		+justify-content($arg)
+
+
+// Align items 
+$align-items-args: (flex-start, flex-end, center, baseline, stretch, inherit)
+@mixin align-items($align: stretch)
+	@if not index($align-items-args, $align)
+		@error "align-items has been passed an invalid argument: #{$align}"
+
+	-webkit-box-align: map-get($sass-flexbox-rename-map, $align)
+	-ms-flex-align: map-get($sass-flexbox-rename-map, $align)
+	-webkit-align-items: $align
+	-moz-align-items: $align
+	align-items: $align
+
+
+@mixin align-items-flex-start
+	+align-items(flex-start)
+@mixin align-items-flex-end
+	+align-items(flex-end)
+@mixin align-items-center
+	+align-items(center)
+@mixin align-items-baseline
+	+align-items(baseline)
+@mixin align-items-stretch
+	+align-items(stretch)
+@mixin align-items-inherit
+	+align-items(inherit)
+
+
+@each $arg in $align-items-args
+	%align-items-#{$arg}
+		+align-items($arg)
+
+
+// Align self 
+$align-self-args: (auto, flex-start, flex-end, center, baseline, stretch, inherit)
+@mixin align-self($align: auto)
+	@if not index($align-self-args, $align)
+		@error "align-self has been passed an invalid argument: #{$align}"
+
+	-ms-flex-item-align: map-get($sass-flexbox-rename-map, $align)
+	-webkit-align-self: $align
+	-moz-align-self: $align
+	align-self: $align
+
+
+@mixin align-self-auto
+	+align-self(auto)
+@mixin align-self-flex-start
+	+align-self(flex-start)
+@mixin align-self-flex-end
+	+align-self(flex-end)
+@mixin align-self-center
+	+align-self(center)
+@mixin align-self-baseline
+	+align-self(baseline)
+@mixin align-self-stretch
+	+align-self(stretch)
+@mixin align-self-inherit
+	+align-self(inherit)
+
+
+@each $arg in $align-self-args
+	%align-self-#{$arg}
+		+align-self($arg)	
+
+// Align content 
+$align-content-args: (flex-start, flex-end, center, space-between, space-around, space-evenly, stretch, inherit)
+@mixin align-content($align: stretch)
+	@if not index($align-content-args, $align)
+		@error "align-content has been passed an invalid argument: #{$align}"
+
+	-ms-flex-line-pack: map-get($sass-flexbox-rename-map, $align)
+	-webkit-align-content: $align
+	-moz-align-content: $align
+	align-content: $align
+
+
+@mixin align-content-flex-start
+	+align-content(flex-start)
+@mixin align-content-flex-end
+	+align-content(flex-end)
+@mixin align-content-center
+	+align-content(center)
+@mixin align-content-space-between
+	+align-content(space-between)
+@mixin align-content-space-around
+	+align-content(space-around)
+@mixin align-content-stretch
+	+align-content(stretch)
+@mixin align-content-inherit
+	+align-content(inherit)
+
+
+@each $arg in $align-content-args
+	%align-content-#{$arg}
+		+align-content($arg)

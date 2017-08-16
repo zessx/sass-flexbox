@@ -5,80 +5,132 @@
 # SassFlexbox
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-flexbox.png" alt="Sass Flexbox logo">
+  <img src="https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-flexbox.png" alt="Sass Flexbox logo">
 </p>
 
 Manage Flexbox in Sass easily.
 
 ## Configuration
 
-Put `sass-flexbox.scss` file in your project, and include it via your Sass manifest:
+```bash
+npm install sass-flexbox --save 
 
-    @import "helpers/sass-flexbox";
+# or 
+
+bower install zessx-sass-flexbox
+```
+
+```sass
+@import 'whatever/path/to/modules/sass-flexbox'
+```
+
     
 ## Usage
 
-SassFlexbox comes with a bunch of placeholders and mixins to helps you using Flexbox, without carrying of vendor prefixes. Mixins attempt to use placeholders as soon as possible, to avoid extra compiled code. 
+SassFlexbox comes with a bunch of placeholders and mixins to help you use Flexbox without worrying about vendor prefixes. Whenever possible, extend placeholders are provided to allow you to not create so much duplicated code. Since they don't always work though (sass doesn't allow `@extend` in `@media` queries), there are also mixins available for all the shorthands.
+
+Since some flexbox values are set with numbers or other measurements, there aren't useful predefined values for them, so there aren't any extend placeholders defined.
 
 ### Display
 
+- **`@mixin display-flex`**
+- **`@mixin display-inline-flex`**
 - `%display-flex`
-- `%display-flex-inline`
-- **`display-flex()`**
-- **`display-flex-inline()`**
+- `%display-inline-flex`
+
 
 ### Flex direction
+
+- **`@mixin flex-direction($direction: row)`**
+
+- **`@mixin flex-direction-row`**
+- **`@mixin flex-direction-row-reverse`**
+- **`@mixin flex-direction-column`**
+- **`@mixin flex-direction-column-reverse`**
+- **`@mixin flex-direction-inherit`**
 
 - `%flex-direction-row`
 - `%flex-direction-row-reverse`
 - `%flex-direction-column`
 - `%flex-direction-column-reverse`
 - `%flex-direction-inherit`
-- **`flex-direction($direction)`** 
+
 
 ### Flex wrap
+
+- **`@mixin flex-wrap($wrap: nowrap)`**
+
+- **`@mixin flex-wrap-nowrap`**
+- **`@mixin flex-wrap-wrap`**
+- **`@mixin flex-wrap-wrap-reverse`**
+- **`@mixin flex-wrap-inherit`**
 
 - `%flex-wrap-nowrap`
 - `%flex-wrap-wrap`
 - `%flex-wrap-wrap-reverse`
 - `%flex-wrap-inherit`
-- **`flex-wrap($wrap)`**
 
-### Flex flow
-
-- **`flex-flow($direction, $wrap)`**
 
 ### Order
 
-- **`order($order)`**
+- **`@mixin order($order: 0)`**
+
+
+### Flex flow
+
+- **`@mixin flex-flow($direction: row, $wrap: nowrap)`**
+
 
 ### Flex grow
 
-- **`flex-grow($grow)`**
+- **`@mixin flex-grow($grow: 0)`**
+
 
 ### Flex shrink
 
-- **`flex-shrink($shrink)`**
+- **`@mixin flex-shrink($shrink: 1)`**
+
 
 ### Flex basis
 
-- **`flex-basis($basis)`**
+- **`@mixin flex-basis($basis: auto)`**
+
 
 ### Flex
 
-- **`flex($grow, $shrink, $basis)`**
+- **`@mixin flex($grow: 0, $shrink: 1, $basis: auto)`**
+
 
 ### Justify content
+
+- **`@mixin justify-content($justify: flex-start)`**
+
+- **`@mixin justify-content-flex-start`**
+- **`@mixin justify-content-flex-end`**
+- **`@mixin justify-content-center`**
+- **`@mixin justify-content-space-between`**
+- **`@mixin justify-content-space-around`**
+- **`@mixin justify-content-inherit`**
 
 - `%justify-content-flex-start`
 - `%justify-content-flex-end`
 - `%justify-content-center`
 - `%justify-content-space-between`
 - `%justify-content-space-around`
+- `%justify-content-space-evenly`
 - `%justify-content-inherit`
-- **`justify-content($justify)`**
+
 
 ### Align items
+
+- **`@mixin align-items($align: stretch)`**
+
+- **`@mixin align-items-flex-start`**
+- **`@mixin align-items-flex-end`**
+- **`@mixin align-items-center`**
+- **`@mixin align-items-baseline`**
+- **`@mixin align-items-stretch`**
+- **`@mixin align-items-inherit`**
 
 - `%align-items-flex-start`
 - `%align-items-flex-end`
@@ -86,9 +138,19 @@ SassFlexbox comes with a bunch of placeholders and mixins to helps you using Fle
 - `%align-items-baseline`
 - `%align-items-stretch`
 - `%align-items-inherit`
-- **`align-items($align)`**
+
 
 ### Align self
+
+- **`@mixin align-self($align: auto)`**
+
+- **`@mixin align-self-auto`**
+- **`@mixin align-self-flex-start`**
+- **`@mixin align-self-flex-end`**
+- **`@mixin align-self-center`**
+- **`@mixin align-self-baseline`**
+- **`@mixin align-self-stretch`**
+- **`@mixin align-self-inherit`**
 
 - `%align-self-auto`
 - `%align-self-flex-start`
@@ -97,21 +159,43 @@ SassFlexbox comes with a bunch of placeholders and mixins to helps you using Fle
 - `%align-self-baseline`
 - `%align-self-stretch`
 - `%align-self-inherit`
-- **`align-self($align)`**
+
 
 ### Align content
+
+- **`@mixin align-content($align: stretch)`**
+
+- **`@mixin align-content-flex-start`**
+- **`@mixin align-content-flex-end`**
+- **`@mixin align-content-center`**
+- **`@mixin align-content-space-between`**
+- **`@mixin align-content-space-around`**
+- **`@mixin align-content-stretch`**
+- **`@mixin align-content-inherit`**
 
 - `%align-content-flex-start`
 - `%align-content-flex-end`
 - `%align-content-center`
 - `%align-content-space-between`
 - `%align-content-space-around`
+- `%align-content-space-evenly`
 - `%align-content-stretch`
 - `%align-content-inherit`
-- **`align-content($align)`**
+
+## Developing Locally
+
+This package includes options to compile local sass files to spot check them, or to run tests with [sassaby](https://github.com/ryanbahniuk/sassaby).
+
+First run `npm install` to download dev dependencies.
+
+To quickly spot-check anything you add or change, run `npm run output-dev`. It will compile the `./dev/_dev.sass` file to `./dev/output.css`.
+
+To run tests, run `npm test`. Tests are written in `./test/index.js`.
+
 
 ## Sources
 
 - http://www.w3.org/TR/css3-flexbox/
 - https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes
 - http://caniuse.com/#feat=flexbox
+- https://css-tricks.com/snippets/css/a-guide-to-flexbox/

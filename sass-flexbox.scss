@@ -1,395 +1,370 @@
-/**
-* SassFlexbox
-* Manage Flexbox in Sass easily.
-*
-* @author     Samuel Marchal (zessx)
-* @version    0.1
-*/
+$sass-flexbox-rename-map: (nowrap: none, auto: auto, flex-start: start, flex-end: end, center: center, baseline: baseline, space-between: space-between, space-around: space-around, stretch: stretch, inherit: inherit);
 
+// Display
+@mixin display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
 
-/*
-    Display
- */
+@mixin display-inline-flex {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
 %display-flex {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flexbox;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
+  @include display-flex;
 }
+
 %display-inline-flex {
-    display: -webkit-inline-flex;
-    display: inline-flex;
-}
-@mixin display-flex() {
-    @extend %display-flex;
-}
-@mixin display-inline-flex() {
-    @extend %display-inline-flex;
+  @include display-inline-flex;
 }
 
-/*
-    Flex direction
- */
-%flex-direction-row {
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-}
-%flex-direction-row-reverse {
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -moz-box-direction: reverse;
-    -webkit-flex-direction: row-reverse;
-    -moz-flex-direction: row-reverse;
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-}
-%flex-direction-column {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
-%flex-direction-column-reverse {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    -moz-box-direction: reverse;
-    -webkit-flex-direction: column-reverse;
-    -moz-flex-direction: column-reverse;
-    -ms-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-}
-%flex-direction-inherit {
-    -webkit-box-orient: inherit;
-    -moz-box-orient: inherit;
-    -webkit-flex-direction: inherit;
-    -moz-flex-direction: inherit;
-    -ms-flex-direction: inherit;
-    flex-direction: inherit;
-}
+// Flex direction
+$flex-direction-args: row, row-reverse, column, column-reverse, inherit;
+
 @mixin flex-direction($direction: row) {
-    @if not index((row, row-reverse, column, column-reverse, inherit), $direction) {
-        $direction: row;
-    }
-    @extend %flex-direction-#{$direction};
+  @if not index($flex-direction-args, $direction) {
+    @error "flex-direction has been passed an invalid argument: #{$direction}";
+  }
+
+  $reverse: false;
+
+  @if index((row-reverse, column-reverse), $direction) {
+    $reverse: true;
+  }
+
+  $orientation: inherit;
+
+  @if index((row, row-reverse), $direction) {
+    $orientation: horizontal;
+  }
+
+  @if index((column, column-reverse), $direction) {
+    $orientation: vertical;
+  }
+
+  -webkit-box-orient: $orientation;
+  -moz-box-orient: $orientation;
+
+  @if $reverse {
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+  }
+
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
 }
 
-/*
-    Flex wrap
- */
-%flex-wrap-nowrap {
-    -webkit-flex-wrap: nowrap;
-    -moz-flex-wrap: nowrap;
-    -ms-flex-wrap: none;
-    flex-wrap: nowrap;
+@mixin flex-direction-row {
+  @include flex-direction(row);
 }
-%flex-wrap-wrap {
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+
+@mixin flex-direction-row-reverse {
+  @include flex-direction(row-reverse);
 }
-%flex-wrap-wrap-reverse {
-    -webkit-flex-wrap: wrap-reverse;
-    -moz-flex-wrap: wrap-reverse;
-    -ms-flex-wrap: wrap-reverse;
-    flex-wrap: wrap-reverse;
+
+@mixin flex-direction-column {
+  @include flex-direction(column);
 }
-%flex-wrap-inherit {
-    -webkit-flex-wrap: inherit;
-    -moz-flex-wrap: inherit;
-    -ms-flex-wrap: inherit;
-    flex-wrap: inherit;
+
+@mixin flex-direction-column-reverse {
+  @include flex-direction(column-reverse);
 }
+
+@mixin flex-direction-inherit {
+  @include flex-direction(inherit);
+}
+
+@each $arg in $flex-direction-args {
+  %flex-direction-#{$arg} {
+    @include flex-direction($arg);
+  }
+}
+
+// Flex wrap
+$flex-wrap-args: nowrap, wrap, wrap-reverse, inherit;
+
 @mixin flex-wrap($wrap: nowrap) {
-    @if not index((nowrap, wrap, wrap-reverse, inherit), $wrap) {
-        $wrap: nowrap;
-    }
-    @extend %flex-wrap-#{$wrap};
+  @if not index($flex-wrap-args, $wrap) {
+    @error "flex-wrap has been passed an invalid argument: #{$wrap}";
+  }
+
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: map-get($sass-flexbox-rename-map, $wrap);
+  flex-wrap: $wrap;
 }
 
-/*
-    Flex flow
- */
-@mixin flex-flow($direction, $wrap) {
-    @include flex-direction($direction);
-    @include flex-wrap($wrap);
+@mixin flex-wrap-nowrap {
+  @include flex-wrap(nowrap);
 }
 
-/*
-    Order
- */
+@mixin flex-wrap-wrap {
+  @include flex-wrap(wrap);
+}
+
+@mixin flex-wrap-wrap-reverse {
+  @include flex-wrap(wrap-reverse);
+}
+
+@mixin flex-wrap-inherit {
+  @include flex-wrap(inherit);
+}
+
+@each $arg in $flex-wrap-args {
+  %flex-wrap-#{$arg} {
+    @include flex-wrap($arg);
+  }
+}
+
+// Order
 @mixin order($order: 0) {
-    -webkit-box-ordinal-group: ($order + 1);
-    -moz-box-ordinal-group: $order;
-    -ms-flex-order: $order;
-    -webkit-order: $order;
-    -moz-order: $order;
-    order: $order;
+  -webkit-box-ordinal-group: $order + 1;
+  -moz-box-ordinal-group: $order;
+  -ms-flex-order: $order;
+  -webkit-order: $order;
+  -moz-order: $order;
+  order: $order;
 }
 
-/*
-    Flex grow
- */
+// Flex flow
+@mixin flex-flow($direction: row, $wrap: nowrap) {
+  @include flex-direction($direction);
+  @include flex-wrap($wrap);
+}
+
+// Flex grow
 @mixin flex-grow($grow: 0) {
-    -webkit-flex-grow: $grow;
-    -webkit-box-flex: $grow;
-    -moz-flex-grow: $grow;
-    -ms-flex-positive: $grow;
-    flex-grow: $grow;
+  -webkit-flex-grow: $grow;
+  -webkit-box-flex: $grow;
+  -moz-flex-grow: $grow;
+  -ms-flex-positive: $grow;
+  flex-grow: $grow;
 }
 
-/*
-    Flex shrink
- */
+// Flex shrink
 @mixin flex-shrink($shrink: 1) {
-    -webkit-flex-shrink: $shrink;
-    -webkit-box-flex: $shrink;
-    -moz-flex-shrink: $shrink;
-    -ms-flex-negative: $shrink;
-    flex-shrink: $shrink;
+  -webkit-flex-shrink: $shrink;
+  -webkit-box-flex: $shrink;
+  -moz-flex-shrink: $shrink;
+  -ms-flex-negative: $shrink;
+  flex-shrink: $shrink;
 }
 
-/*
-    Flex basis
- */
+// Flex basis
 @mixin flex-basis($basis: auto) {
-    -webkit-flex-basis: $basis;
-    -moz-flex-basis: $basis;
-    -ms-flex-preferred-size: $basis;
-    flex-basis: $basis;
+  -webkit-flex-basis: $basis;
+  -moz-flex-basis: $basis;
+  -ms-flex-preferred-size: $basis;
+  flex-basis: $basis;
 }
 
-/*
-    Flex
- */
+// Flex
 @mixin flex($grow: 0, $shrink: 1, $basis: auto) {
-    @include flex-grow($grow);
-    @include flex-shrink($shrink);
-    @include flex-basis($basis);
+  @include flex-grow($grow);
+  @include flex-shrink($shrink);
+  @include flex-basis($basis);
 }
 
-/*
-    Justify content
- */
-%justify-content-flex-start {
-    -webkit-box-pack: start;
-    -moz-box-pack: start;
-    -webkit-flex-pack: start;
-    -ms-flex-pack: start;
-    -moz-justify-content: flex-start;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-}
-%justify-content-flex-end {
-    -webkit-box-pack: end;
-    -moz-box-pack: end;
-    -webkit-flex-pack: end;
-    -ms-flex-pack: end;
-    -moz-justify-content: flex-end;
-    -webkit-justify-content: flex-end;
-    justify-content: flex-end;
-}
-%justify-content-center {
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -webkit-flex-pack: center;
-    -ms-flex-pack: center;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-}
-%justify-content-space-between {
+// Justify content
+$justify-content-args: flex-start, flex-end, center, space-between, space-around, space-evenly, inherit;
+
+@mixin justify-content($justify: flex-start) {
+  @if not index($justify-content-args, $justify) {
+    @error "justify-content has been passed an invalid argument: #{$justify}";
+  }
+
+  @if $justify == space-between {
     -webkit-box-pack: justify;
     -moz-box-pack: justify;
     -webkit-flex-pack: justify;
     -ms-flex-pack: justify;
-    -moz-justify-content: space-between;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-}
-%justify-content-space-around {
-    -moz-justify-content: space-around;
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
-}
-%justify-content-inherit {
-    -webkit-box-pack: inherit;
-    -moz-box-pack: inherit;
-    -webkit-flex-pack: inherit;
-    -ms-flex-pack: inherit;
-    -moz-justify-content: inherit;
-    -webkit-justify-content: inherit;
-    justify-content: inherit;
-}
-@mixin justify-content($justify: flex-start) {
-    @if not index((flex-start, flex-end, center, space-between, space-around, inherit), $justify) {
-        $justify: flex-start;
-    }
-    @extend %justify-content-#{$justify};
+  }
+  @else if $justify != space-around {
+    -webkit-box-pack: map-get($sass-flexbox-rename-map, $justify);
+    -moz-box-pack: map-get($sass-flexbox-rename-map, $justify);
+    -webkit-flex-pack: map-get($sass-flexbox-rename-map, $justify);
+    -ms-flex-pack: map-get($sass-flexbox-rename-map, $justify);
+  }
+
+  -moz-justify-content: $justify;
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
 }
 
-/*
-    Align items
- */
-%align-items-flex-start {
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    -webkit-align-items: flex-start;
-    -moz-align-items: flex-start;
-    align-items: flex-start;
+@mixin justify-content-flex-start {
+  @include justify-content(flex-start);
 }
-%align-items-flex-end {
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    -webkit-align-items: flex-end;
-    -moz-align-items: flex-end;
-    align-items: flex-end;
+
+@mixin justify-content-flex-end {
+  @include justify-content(flex-end);
 }
-%align-items-center {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center;
+
+@mixin justify-content-center {
+  @include justify-content(center);
 }
-%align-items-baseline {
-    -webkit-box-align: baseline;
-    -ms-flex-align: baseline;
-    -webkit-align-items: baseline;
-    -moz-align-items: baseline;
-    align-items: baseline;
+
+@mixin justify-content-space-between {
+  @include justify-content(space-between);
 }
-%align-items-stretch {
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
-    -webkit-align-items: stretch;
-    -moz-align-items: stretch;
-    align-items: stretch;
+
+@mixin justify-content-space-around {
+  @include justify-content(space-around);
 }
-%align-items-inherit {
-    -webkit-box-align: inherit;
-    -ms-flex-align: inherit;
-    -webkit-align-items: inherit;
-    -moz-align-items: inherit;
-    align-items: inherit;
+
+@mixin justify-content-inherit {
+  @include justify-content(inherit);
 }
+
+@each $arg in $justify-content-args {
+  %justify-content-#{$arg} {
+    @include justify-content($arg);
+  }
+}
+
+// Align items
+$align-items-args: flex-start, flex-end, center, baseline, stretch, inherit;
+
 @mixin align-items($align: stretch) {
-    @if not index((flex-start, flex-end, center, baseline, stretch, inherit), $align) {
-        $align: stretch;
-    }
-    @extend %align-items-#{$align};
+  @if not index($align-items-args, $align) {
+    @error "align-items has been passed an invalid argument: #{$align}";
+  }
+
+  -webkit-box-align: map-get($sass-flexbox-rename-map, $align);
+  -ms-flex-align: map-get($sass-flexbox-rename-map, $align);
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  align-items: $align;
 }
 
-/*
-    Align self
- */
-%align-self-auto {
-    -ms-flex-item-align: auto;
-    -webkit-align-self: auto;
-    -moz-align-self: auto;
-    align-self: auto;
+@mixin align-items-flex-start {
+  @include align-items(flex-start);
 }
-%align-self-flex-start {
-    -ms-flex-item-align: start;
-    -webkit-align-self: flex-start;
-    -moz-align-self: flex-start;
-    align-self: flex-start;
+
+@mixin align-items-flex-end {
+  @include align-items(flex-end);
 }
-%align-self-flex-end {
-    -ms-flex-item-align: end;
-    -webkit-align-self: flex-end;
-    -moz-align-self: flex-end;
-    align-self: flex-end;
+
+@mixin align-items-center {
+  @include align-items(center);
 }
-%align-self-center {
-    -ms-flex-item-align: center;
-    -webkit-align-self: center;
-    -moz-align-self: center;
-    align-self: center;
+
+@mixin align-items-baseline {
+  @include align-items(baseline);
 }
-%align-self-baseline {
-    -ms-flex-item-align: baseline;
-    -webkit-align-self: baseline;
-    -moz-align-self: baseline;
-    align-self: baseline;
+
+@mixin align-items-stretch {
+  @include align-items(stretch);
 }
-%align-self-stretch {
-    -ms-flex-item-align: stretch;
-    -webkit-align-self: stretch;
-    -moz-align-self: stretch;
-    align-self: stretch;
+
+@mixin align-items-inherit {
+  @include align-items(inherit);
 }
-%align-self-inherit {
-    -ms-flex-item-align: inherit;
-    -webkit-align-self: inherit;
-    -moz-align-self: inherit;
-    align-self: inherit;
+
+@each $arg in $align-items-args {
+  %align-items-#{$arg} {
+    @include align-items($arg);
+  }
 }
+
+// Align self
+$align-self-args: auto, flex-start, flex-end, center, baseline, stretch, inherit;
+
 @mixin align-self($align: auto) {
-    @if not index((auto, flex-start, flex-end, center, baseline, stretch, inherit), $align) {
-        $align: auto;
-    }
-    @extend %align-self-#{$align};
+  @if not index($align-self-args, $align) {
+    @error "align-self has been passed an invalid argument: #{$align}";
+  }
+
+  -ms-flex-item-align: map-get($sass-flexbox-rename-map, $align);
+  -webkit-align-self: $align;
+  -moz-align-self: $align;
+  align-self: $align;
 }
 
-/*
-    Align content
- */
-%align-content-flex-start {
-    -ms-flex-line-pack: start;
-    -webkit-align-content: flex-start;
-    -moz-align-content: flex-start;
-    align-content: flex-start;
+@mixin align-self-auto {
+  @include align-self(auto);
 }
-%align-content-flex-end {
-    -ms-flex-line-pack: end;
-    -webkit-align-content: flex-end;
-    -moz-align-content: flex-end;
-    align-content: flex-end;
+
+@mixin align-self-flex-start {
+  @include align-self(flex-start);
 }
-%align-content-center {
-    -ms-flex-line-pack: center;
-    -webkit-align-content: center;
-    -moz-align-content: center;
-    align-content: center;
+
+@mixin align-self-flex-end {
+  @include align-self(flex-end);
 }
-%align-content-space-between {
-    -ms-flex-line-pack: space-between;
-    -webkit-align-content: space-between;
-    -moz-align-content: space-between;
-    align-content: space-between;
+
+@mixin align-self-center {
+  @include align-self(center);
 }
-%align-content-space-around {
-    -ms-flex-line-pack: space-around;
-    -webkit-align-content: space-around;
-    -moz-align-content: space-around;
-    align-content: space-around;
+
+@mixin align-self-baseline {
+  @include align-self(baseline);
 }
-%align-content-stretch {
-    -ms-flex-line-pack: stretch;
-    -webkit-align-content: stretch;
-    -moz-align-content: stretch;
-    align-content: stretch;
+
+@mixin align-self-stretch {
+  @include align-self(stretch);
 }
-%align-content-inherit {
-    -ms-flex-line-pack: inherit;
-    -webkit-align-content: inherit;
-    -moz-align-content: inherit;
-    align-content: inherit;
+
+@mixin align-self-inherit {
+  @include align-self(inherit);
 }
+
+@each $arg in $align-self-args {
+  %align-self-#{$arg} {
+    @include align-self($arg);
+  }
+}
+
+// Align content
+$align-content-args: flex-start, flex-end, center, space-between, space-around, space-evenly, stretch, inherit;
+
 @mixin align-content($align: stretch) {
-    @if not index((flex-start, flex-end, center, space-between, space-around, stretch, inherit), $align) {
-        $align: stretch;
-    }
-    @extend %align-content-#{$align};
+  @if not index($align-content-args, $align) {
+    @error "align-content has been passed an invalid argument: #{$align}";
+  }
+
+  -ms-flex-line-pack: map-get($sass-flexbox-rename-map, $align);
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  align-content: $align;
+}
+
+@mixin align-content-flex-start {
+  @include align-content(flex-start);
+}
+
+@mixin align-content-flex-end {
+  @include align-content(flex-end);
+}
+
+@mixin align-content-center {
+  @include align-content(center);
+}
+
+@mixin align-content-space-between {
+  @include align-content(space-between);
+}
+
+@mixin align-content-space-around {
+  @include align-content(space-around);
+}
+
+@mixin align-content-stretch {
+  @include align-content(stretch);
+}
+
+@mixin align-content-inherit {
+  @include align-content(inherit);
+}
+
+@each $arg in $align-content-args {
+  %align-content-#{$arg} {
+    @include align-content($arg);
+  }
 }
