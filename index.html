@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sass-flexbox by zessx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Sass-flexbox</h1>
+      <h2 class="project-tagline">Manage flexbox in Sass easily.</h2>
+      <a href="https://github.com/zessx/sass-flexbox" class="btn">View on GitHub</a>
+      <a href="https://github.com/zessx/sass-flexbox/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zessx/sass-flexbox/tarball/master" class="btn">Download .tar.gz</a>
+      <a href="https://www.npmjs.com/package/sass-flexbox" class="btn">View on npm</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="sassflexbox" class="anchor" href="#sassflexbox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SassFlexbox</h1>
+
+<p>
+  <center><img src="https://raw.githubusercontent.com/zessx/sass-flexbox/master/sass-flexbox.png" alt="SassFlexbox"></center><br>
+  Manage flexbox Sass easily.
+</p>
+
+<h2><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<pre><code>npm install sass-flexbox --save 
+
+# or 
+
+bower install zessx-sass-flexbox
+</code></pre>
+
+<pre><code>@import 'whatever/path/to/modules/sass-flexbox'
+</code></pre>
+
+<h2><a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>SassFlexbox comes with a bunch of placeholders and mixins to help you use Flexbox without worrying about vendor prefixes. Whenever possible, extend placeholders are provided to allow you to not create so much duplicated code. Since they don't always work though (sass doesn't allow @extend in @media queries), there are also mixins available for all the shorthands.</p>
+<p>Since some flexbox values are set with numbers or other measurements, there aren't useful predefined values for them, so there aren't any extend placeholders defined.</p>
+
+<h3><a id="display" class="anchor" href="#display" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Display</h3>
+
+<ul>
+  <li><b><code>@mixin display-flex</code></b></li>
+  <li><b><code>@mixin display-inline-flex</code></b></li>
+  <li><code>%display-flex</code></li>
+  <li><code>%display-inline-flex</code></li>
+</ul>
+
+<h3><a id="Flex direction" class="anchor" href="#Flex direction" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex direction</h3>
+
+<ul>
+  <li><b><code>@mixin flex-direction($direction: row)</code></b></li>
+  <li><b><code>@mixin flex-direction-row</code></b></li>
+  <li><b><code>@mixin flex-direction-row-reverse</code></b></li>
+  <li><b><code>@mixin flex-direction-column</code></b></li>
+  <li><b><code>@mixin flex-direction-column-reverse</code></b></li>
+  <li><b><code>@mixin flex-direction-inherit</code></b></li>
+  <li><code>%flex-direction-row</code></li>
+  <li><code>%flex-direction-row-reverse</code></li>
+  <li><code>%flex-direction-column</code></li>
+  <li><code>%flex-direction-column-reverse</code></li>
+  <li><code>%flex-direction-inherit</code></li>
+</ul>
+
+<h3><a id="Flex wrap" class="anchor" href="#Flex wrap" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex wrap</h3>
+
+<ul>
+  <li><b><code>@mixin flex-wrap($wrap: nowrap)</code></b></li>
+  <li><b><code>@mixin flex-wrap-nowrap</code></b></li>
+  <li><b><code>@mixin flex-wrap-wrap</code></b></li>
+  <li><b><code>@mixin flex-wrap-wrap-reverse</code></b></li>
+  <li><b><code>@mixin flex-wrap-inherit</code></b></li>
+  <li><code>%flex-wrap-nowrap</code></li>
+  <li><code>%flex-wrap-wrap</code></li>
+  <li><code>%flex-wrap-wrap-reverse</code></li>
+  <li><code>%flex-wrap-inherit</code></li>
+</ul>
+
+<h3><a id="Order" class="anchor" href="#Order" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Order</h3>
+
+<ul>
+  <li><b><code>@mixin order($order: 0)</code></b></li>
+</ul>
+
+<h3><a id="Flex flow" class="anchor" href="#Flex flow" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex flow</h3>
+
+<ul>
+  <li><b><code>@mixin flex-flow($direction: row, $wrap: nowrap)</code></b></li>
+</ul>
+
+<h3><a id="Flex grow" class="anchor" href="#Flex grow" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex grow</h3>
+
+<ul>
+  <li><b><code>@mixin flex-grow($grow: 0)</code></b></li>
+</ul>
+
+<h3><a id="Flex shrink" class="anchor" href="#Flex shrink" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex shrink</h3>
+
+<ul>
+  <li><b><code>@mixin flex-shrink($shrink: 1)</code></b></li>
+</ul>
+
+<h3><a id="Flex basis" class="anchor" href="#Flex basis" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex basis</h3>
+
+<ul>
+  <li><b><code>@mixin flex-basis($basis: auto)</code></b></li>
+</ul>
+
+<h3><a id="Flex" class="anchor" href="#Flex" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Flex</h3>
+
+<ul>
+  <li><b><code>@mixin flex($grow: 0, $shrink: 1, $basis: auto)</code></b></li>
+</ul>
+
+<h3><a id="Justify content" class="anchor" href="#Justify content" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Justify content</h3>
+
+<ul>
+  <li><b><code>@mixin justify-content($justify: flex-start)</code></b></li>
+  <li><b><code>@mixin justify-content-flex-start</code></b></li>
+  <li><b><code>@mixin justify-content-flex-end</code></b></li>
+  <li><b><code>@mixin justify-content-center</code></b></li>
+  <li><b><code>@mixin justify-content-space-between</code></b></li>
+  <li><b><code>@mixin justify-content-space-around</code></b></li>
+  <li><b><code>@mixin justify-content-inherit</code></b></li>
+  <li><code>%justify-content-flex-start</code></li>
+  <li><code>%justify-content-flex-end</code></li>
+  <li><code>%justify-content-center</code></li>
+  <li><code>%justify-content-space-between</code></li>
+  <li><code>%justify-content-space-around</code></li>
+  <li><code>%justify-content-space-evenly</code></li>
+  <li><code>%justify-content-inherit</code></li>
+</ul>
+
+<h3><a id="Align items" class="anchor" href="#Align items" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Align items</h3>
+
+  <ul>
+  <li><b><code>@mixin align-items($align: stretch)</code></b></li>
+  <li><b><code>@mixin align-items-flex-start</code></b></li>
+  <li><b><code>@mixin align-items-flex-end</code></b></li>
+  <li><b><code>@mixin align-items-center</code></b></li>
+  <li><b><code>@mixin align-items-baseline</code></b></li>
+  <li><b><code>@mixin align-items-stretch</code></b></li>
+  <li><b><code>@mixin align-items-inherit</code></b></li>
+  <li><code>%align-items-flex-start</code></li>
+  <li><code>%align-items-flex-end</code></li>
+  <li><code>%align-items-center</code></li>
+  <li><code>%align-items-baseline</code></li>
+  <li><code>%align-items-stretch</code></li>
+  <li><code>%align-items-inherit</code></li>
+</ul>
+
+<h3><a id="Align self" class="anchor" href="#Align self" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Align self</h3>
+
+<ul>
+  <li><b><code>@mixin align-self($align: auto)</code></b></li>
+  <li><b><code>@mixin align-self-auto</code></b></li>
+  <li><b><code>@mixin align-self-flex-start</code></b></li>
+  <li><b><code>@mixin align-self-flex-end</code></b></li>
+  <li><b><code>@mixin align-self-center</code></b></li>
+  <li><b><code>@mixin align-self-baseline</code></b></li>
+  <li><b><code>@mixin align-self-stretch</code></b></li>
+  <li><b><code>@mixin align-self-inherit</code></b></li>
+  <li><code>%align-self-auto</code></li>
+  <li><code>%align-self-flex-start</code></li>
+  <li><code>%align-self-flex-end</code></li>
+  <li><code>%align-self-center</code></li>
+  <li><code>%align-self-baseline</code></li>
+  <li><code>%align-self-stretch</code></li>
+  <li><code>%align-self-inherit</code></li>
+</ul>
+
+<h3><a id="Align content" class="anchor" href="#Align content" aria-hidden="true"><span aria-hidden="true" class="octicon oction-link"></span></a>Align content</h3>
+
+<ul>
+  <li><b><code>@mixin align-content($align: stretch)</code></b></li>
+  <li><b><code>@mixin align-content-flex-start</code></b></li>
+  <li><b><code>@mixin align-content-flex-end</code></b></li>
+  <li><b><code>@mixin align-content-center</code></b></li>
+  <li><b><code>@mixin align-content-space-between</code></b></li>
+  <li><b><code>@mixin align-content-space-around</code></b></li>
+  <li><b><code>@mixin align-content-stretch</code></b></li>
+  <li><b><code>@mixin align-content-inherit</code></b></li>
+  <li><code>%align-content-flex-start</code></li>
+  <li><code>%align-content-flex-end</code></li>
+  <li><code>%align-content-center</code></li>
+  <li><code>%align-content-space-between</code></li>
+  <li><code>%align-content-space-around</code></li>
+  <li><code>%align-content-space-evenly</code></li>
+  <li><code>%align-content-stretch</code></li>
+  <li><code>%align-content-inherit</code></li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/zessx/sass-flexbox">Sass-queries</a> is maintained by <a href="https://github.com/zessx">zessx</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>
